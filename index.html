@@ -1,1 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bime | Boutique Feminina</title>
+  <meta name="description" content="Descubra a Bime, sua boutique de moda feminina.">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Georgia, serif;
+      background: #ffffff;
+      color: #252c35;
+    }
+
+    header {
+      text-align: center;
+      padding: 25px 15px;
+      border-bottom: 1px solid #e8eff5;
+    }
+
+    .logo {
+      font-size: 39px;
+      letter-spacing: 7px;
+      color: #7da9c8;
+    }
+
+    .subtitle {
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 4px;
+      margin-top: 7px;
+      color: #8496a5;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 22px;
+      padding: 17px 10px;
+      flex-wrap: wrap;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #424c56;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 55px 20px;
+      background: #edf5fa;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      font-weight: normal;
+      color: #456d8c;
+    }
+
+    .hero p {
+      margin-top: 13px;
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      color: #667887;
+    }
+
+    .catalogo {
+      padding: 35px 12px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .catalogo h2 {
+      text-align: center;
+      font-size: 25px;
+      font-weight: normal;
+      margin-bottom: 25px;
+    }
+
+    .categorias {
+      display: flex;
+      gap: 9px;
+      overflow-x: auto;
+      padding-bottom: 22px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .categorias button {
+      background: white;
+      border: 1px solid #c5dceb;
+      color: #547b98;
+      padding: 9px 15px;
+      border-radius: 25px;
+      font-size: 11px;
+      cursor: pointer;
+    }
+
+    .produtos {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 13px;
+    }
+
+    .produto {
+      cursor: pointer;
+      min-width: 0;
+    }
+
+    .produto img {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      background: #edf2f5;
+    }
+
+    .produto h3 {
+      font-size: 13px;
+      font-weight: normal;
+      margin-top: 9px;
+    }
+
+    .produto p {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      color: #6f91aa;
+      margin-top: 5px;
+    }
+
+    .detalhes {
+      display: none;
+      padding: 30px 20px;
+      max-width: 650px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .detalhes img {
+      width: 100%;
+      max-width: 350px;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+    }
+
+    .detalhes h2 {
+      margin: 18px;
+      font-weight: normal;
+    }
+
+    .detalhes p {
+      margin: 12px;
+      font-family: Arial, sans-serif;
+    }
+
+    .reserva {
+      background: #dcecf6;
+      border: none;
+      padding: 14px 25px;
+      margin-top: 15px;
+      color: #345d7c;
+      cursor: pointer;
+    }
+
+    .voltar {
+      display: block;
+      margin: 20px;
+      color: #547b98;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: #edf5fa;
+      font-size: 12px;
+      color: #62798a;
+    }
+
+    @media (max-width: 480px) {
+      .produtos {
+        gap: 9px;
+      }
+
+      .produto h3 {
+        font-size: 11px;
+      }
+
+      .categorias {
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">BIME</div>
+  <div class="subtitle">BOUTIQUE FEMININA</div>
+</header>
+
+<nav>
+  <a href="#inicio">Início</a>
+  <a href="#catalogo">Coleção</a>
+  <a href="#contato">Contato</a>
+</nav>
+
+<section class="hero" id="inicio">
+  <h1>Elegância em cada detalhe.</h1>
+  <p>Descubra uma nova forma de expressar seu estilo.</p>
+</section>
+
+<main class="catalogo" id="catalogo">
+  <h2>Nossa coleção</h2>
+
+  <div class="categorias">
+    <button onclick="filtrar('Todos')">Todos</button>
+    <button onclick="filtrar('Vestidos')">Vestidos</button>
+    <button onclick="filtrar('Blusas')">Blusas</button>
+    <button onclick="filtrar('Calças')">Calças</button>
+    <button onclick="filtrar('Conjuntos')">Conjuntos</button>
+    <button onclick="filtrar('Bolsas')">Bolsas</button>
+    <button onclick="filtrar('Calçados')">Calçados</button>
+    <button onclick="filtrar('Acessórios')">Acessórios</button>
+  </div>
+
+  <div class="produtos" id="produtos"></div>
+</main>
+
+<section class="detalhes" id="detalhes">
+  <span class="voltar" onclick="voltar()">← Voltar à coleção</span>
+  <div id="produtoDetalhe"></div>
+</section>
+
+<footer id="contato">
+  <h2>BIME</h2>
+  <p>Moda, delicadeza e personalidade.</p>
+  <p>© 2026 Bime Boutique</p>
+</footer>
+
+<script>
+  const produtos = [
+    {nome:"Vestido Aurora", categoria:"Vestidos", preco:"R$ 289,90", imagem:"https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=600"},
+    {nome:"Blusa Serena", categoria:"Blusas", preco:"R$ 149,90", imagem:"https://images.unsplash.com/photo-1551163943-3f6a855d1153?w=600"},
+    {nome:"Calça Elegance", categoria:"Calças", preco:"R$ 219,90", imagem:"https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600"},
+    {nome:"Conjunto Amélie", categoria:"Conjuntos", preco:"R$ 329,90", imagem:"https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600"},
+    {nome:"Bolsa Celeste", categoria:"Bolsas", preco:"R$ 189,90", imagem:"https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600"},
+    {nome:"Sandália Bella", categoria:"Calçados", preco:"R$ 179,90", imagem:"https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=600"}
+  ];
+
+  function mostrar(lista) {
+    document.getElementById("produtos").innerHTML = lista.map((p) => `
+      <article class="produto" onclick="abrir('${p.nome}')">
+        <img src="${p.imagem}" alt="${p.nome}" loading="lazy">
+        <h3>${p.nome}</h3>
+        <p>${p.preco}</p>
+      </article>
+    `).join("");
+  }
+
+  function filtrar(categoria) {
+    mostrar(categoria === "Todos" ? produtos :
+      produtos.filter(p => p.categoria === categoria));
+    document.getElementById("detalhes").style.display = "none";
+    document.querySelector(".catalogo").style.display = "block";
+  }
+
+  function abrir(nome) {
+    const p = produtos.find(item => item.nome === nome);
+    document.querySelector(".catalogo").style.display = "none";
+    document.getElementById("detalhes").style.display = "block";
+    document.getElementById("produtoDetalhe").innerHTML = `
+      <img src="${p.imagem}" alt="${p.nome}">
+      <h2>${p.nome}</h2>
+      <p>${p.preco}</p>
+      <p>Consulte disponibilidade e solicite sua reserva.</p>
+      <button class="reserva" onclick="reservar('${p.nome}')">
+        Reservar pelo WhatsApp
+      </button>
+    `;
+    window.scrollTo(0,0);
+  }
+
+  function voltar() {
+    document.getElementById("detalhes").style.display = "none";
+    document.querySelector(".catalogo").style.display = "block";
+  }
+
+  function reservar(nome) {
+    const numero = "";
+    if (!numero) {
+      alert("O WhatsApp comercial da Bime ainda precisa ser configurado.");
+      return;
+    }
+    const mensagem = encodeURIComponent(
+      "Olá! Gostaria de solicitar a reserva de: " + nome
+    );
+    window.open("https://wa.me/" + numero + "?text=" + mensagem, "_blank");
+  }
+
+  mostrar(produtos);
+</script>
+
+</body>
+</html>
 
